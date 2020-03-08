@@ -83,7 +83,7 @@ read tmp
 
 # Copy setup scripts to the container
 lxc exec $container -- sudo --login --user ubuntu mkdir $cont_home/setup
-lxc file push setup_content.sh $container $cont_home/setup/setup_content.sh
+lxc file push setup_content.sh $container$cont_home/setup/setup_content.sh
 lxc exec $container -- chown -R $cont_user:$cont_user $cont_home/setup
 
 echo "run setup but wait around 1 minute before pushing enter... (push enter)"
