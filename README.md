@@ -1,7 +1,8 @@
 lxc container setup
 -------------------
 
-This repository contains setup bash-scripts to create student/midas lxc containers. The student containers are recstricted to one gpu only, while the normal midas containers are able to access all GPUs. Additionally, there is no group mapping (sharegrp/datagrp) for student containers to restrict data access.
+This repository contains setup bash-scripts to create student/midas lxc containers. The student containers are recstricted to one gpu only, while the normal midas containers are able to access all GPUs. Additionally, there is no group mapping (sharegrp/datagrp) for student containers to restrict data access. The lxc setup to create and run the container is defined in [setup_container.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_container.sh). The installation of the container content is seperated in [setup_content.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_content.sh) (basic software packages: *pyenv, pycharm, gitkraken, xfce/x2go, ...).* Feel free to customize your container content setup for your needs. 
+
 
 #### How to run the setup?
 To install a lxc container, your user has to be in the lxc group!
