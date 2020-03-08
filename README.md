@@ -1,4 +1,4 @@
-lxc container setup
+LXC container setup
 -------------------
 
 This repository contains setup bash-scripts to create student/midas lxc containers. The student containers are recstricted to one gpu only, while the normal midas containers are able to access all GPUs. Additionally, there is no group mapping (sharegrp/datagrp) for student containers to restrict data access. The lxc setup to create and run the container is defined in [setup_container.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_container.sh). The installation of the container content is seperated in [setup_content.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_content.sh) (basic software packages: *pyenv, pycharm, gitkraken, xfce/x2go, ...).* Feel free to customize your container content setup for your needs. 
@@ -52,11 +52,12 @@ it'sufficient to set
 
     module load cuda/10.0
    
-for Tensorflow-2.0.0. Use `module purge` (reset) or `module unload ...` to unset variables.
+for Tensorflow-2.0.0 (if cudnn is not set, this command will automatically choose an appropriate cudnn version). 
+Use `module purge` (reset) or `module unload ...` to unset variables.
 Available libraries can be listed with `module avail`, loaded libraries with `module list`.
 More information is available here [environment modules](http://modules.sourceforge.net/).
 
 You can also check `echo $LD_LIBRARY_PATH` to show the loaded libraries. 
 
-For older CUDA versions: There are anaconda bundels to install tf/cuda in a conda virtualenv:
-[TF with anaconda](https://docs.anaconda.com/anaconda/user-guide/tasks/tensorflow/).
+For older CUDA versions: There are anaconda bundels to install tf/cuda in a conda virtualenv 
+([TF with anaconda](https://docs.anaconda.com/anaconda/user-guide/tasks/tensorflow/)).
