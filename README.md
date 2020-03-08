@@ -6,13 +6,17 @@ This repository contains setup bash-scripts to create student/midas lxc containe
 #### How to run the setup?
 To install a lxc container, your user has to be in the lxc group!
 
-    ./setupcontainer <container_name> <port> <host_user>
+    ./setupcontainer <container_name> <container_port> <host_user>
 
 Here you can find a list with the assigned user ports: /mnt/share/midas/users.
 
-You can access the container's SSH server via ubuntu@127.0.0.1 -p <port>.
+You can access the container's SSH server via
 
-##### User rights mapping
+    ssh ubuntu@127.0.0.1 -p <container_port>
+
+
+
+##### User/group rights mapping
 | container| <-> | host                      |
 |:---------|:---:|--------------------------:|
 | ubuntu   | <-> | <host_user>               |
