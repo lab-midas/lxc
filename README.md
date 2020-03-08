@@ -44,7 +44,7 @@ Copy the prepared CUDA libraries (and symlinks!) from the host into your contain
 
     sudo mkdir -p /midas
     sudo mkdir -p /midas/software
-    sudo rsync -a /mnt/share/software/ /midas/software
+    sudo rsync -a /mnt/midas/software/ /midas/software
     echo "module use /midas/software/modules" >> ~/.bashrc
     
 Use `module load` to set the CUDA/CUDNN/TensorRT environment variables. For example,
