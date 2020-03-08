@@ -51,8 +51,11 @@ it'sufficient to set
 
     module load cuda/10.0
    
-for Tensorflow-2.0.0. `module purge` or `module unload ...` unsets the variables.
+for Tensorflow-2.0.0. Use `module purge` (reset) or `module unload ...` to unset variables.
 Available libraries can be listed with `module avail`, loaded libraries with `module list`.
+More information is available here [environment modules](http://modules.sourceforge.net/).
+
+You can also check `echo $LD_LIBRARY_PATH` to show the loaded libraries. 
 
 For older CUDA versions: There are anaconda bundels to install tf/cuda in a conda virtualenv:
 [TF with anaconda](https://docs.anaconda.com/anaconda/user-guide/tasks/tensorflow/).
