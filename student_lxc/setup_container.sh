@@ -6,23 +6,12 @@
 container=$1
 sshproxyport=$2
 host_user=$3
-#host_uid=$5
-#host_gid=$6
 
-# Check input
-# If no username is given ($3) get uid , gid from current user.
-if [[ -z $host_user ]]; then
-  host_user=$(whoami)
-  host_uid=$(id -u)
-  host_gid=$(id -g)
-  echo "Using current UID $host_uid"
-  echo "Using current GID $host_gid"
-else
-  host_uid=$(id -u $host_user)
-  host_gid=$(id -g $host_user)
-  echo "Using passed UID $host_uid"
-  echo "Using passed GID $host_gid"
-fi
+# Get GID/UID for the host user
+host_uid=$(id -u $host_user)
+host_gid=$(id -g $host_user)
+echo "Using passed UID $host_uid"
+echo "Using passed GID $host_gid"
 
 # Prepare envs
 cont_user=ubuntu
@@ -49,7 +38,7 @@ lxc restart $container
 echo "configure ssh/mounting but wait around 1 minute before pushing enter...(push enter)"
 read tmp
 
-# Ssh setup, port forwarding
+# SSH setup
 lxc exec $container -- sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 lxc exec $container -- systemctl restart ssh
 
