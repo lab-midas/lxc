@@ -71,9 +71,9 @@ To start a student container run
     ./setupcontainer <container_name> <container_port>
 
 The name of the container should have the following format "contstudent01".
-To add mount points inside your student container, use the following lxc command on the host system:
+To add mount points inside your student container, use the following lxc command on the host system (for each device you can define a <disk_name>):
 
-    lxc config device add <container_name> homes_disk disk source=<host_dir> path=<container_mount_dir>
+    lxc config device add <container_name> <disk_name> disk source=<host_dir> path=<container_mount_dir>
 
 A mapping for a single user can be set by:
 
