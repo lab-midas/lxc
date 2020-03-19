@@ -46,13 +46,13 @@ lxc exec $container -- systemctl restart ssh
 lxc config device add $container ssh_proxy proxy listen=tcp:0.0.0.0:$sshproxyport connect=tcp:127.0.0.1:22
 
 # Share data with host system
-lxc config device add $container homes_disk disk source=/home path=/mnt/home
-lxc config device add $container share_disk disk source=/mnt/share path=/mnt/share
-lxc config device add $container data_disk disk source=/mnt/data path=/mnt/data
+#lxc config device add $container homes_disk disk source=/home path=/mnt/home
+#lxc config device add $container share_disk disk source=/mnt/share path=/mnt/share
+#lxc config device add $container data_disk disk source=/mnt/data path=/mnt/data
 
 # Configure user/group id mapping, available after restart(!)
 # container ids / atm. known to be 1000 / 1000
-echo -en "uid $host_uid 1000\ngid $host_gid 1000" | lxc config set $container raw.idmap -
+#echo -en "uid $host_uid 1000\ngid $host_gid 1000" | lxc config set $container raw.idmap -
 
 # (short break between restart and exec)
 echo "push setup files but wait around 1 minute before pushing enter ... (push enter)"
