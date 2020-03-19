@@ -1,7 +1,7 @@
 LXC container setup
 -------------------
 
-This repository contains setup bash-scripts to create student/midas lxc containers. The student containers are recstricted to one gpu only, while the normal midas containers are able to access all GPUs. Additionally, there is no group mapping (sharegrp/datagrp) for student containers to restrict data access. The lxc setup to create and run the container is defined in [setup_container.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_container.sh). The installation of the container content is seperated in [setup_content.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_content.sh) (basic software packages: *pyenv, pycharm, gitkraken, xfce/x2go, ...).* Feel free to customize your container content setup for your needs. 
+This repository contains setup bash-scripts to create student/midas lxc containers. The student containers are recstricted to one gpu only, while the normal midas containers are able to access all GPUs. Additionally, there are no pre-configured uid/gid maps or mount points for student containers to restrict data access. The lxc setup to create and run the container is defined in [setup_container.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_container.sh). The installation of the container content is seperated in [setup_content.sh](https://github.com/lab-midas/lxc/blob/master/midas_lxc/setup_content.sh) (basic software packages: *pyenv, pycharm, gitkraken, xfce/x2go, ...).* Feel free to customize your container content setup for your needs. 
 
 
 #### How to run the setup?
@@ -15,7 +15,9 @@ You can access the container's SSH server via
 
     ssh ubuntu@127.0.0.1 -p <container_port>
 
+or inside the container network via
 
+    ssh ubuntu@<conatiner_name>
 
 ##### User/group rights mapping
 | container| <-> | host                      |
@@ -61,3 +63,25 @@ You can also check `echo $LD_LIBRARY_PATH` to show the loaded libraries.
 
 For older CUDA versions: There are anaconda bundels to install tf/cuda in a conda virtualenv 
 ([TF with anaconda](https://docs.anaconda.com/anaconda/user-guide/tasks/tensorflow/)).
+
+Student containers
+------------------
+To add mount points inside your student container, use the following lxc command on the host system:
+
+    lxc config device add <container_name> homes_disk disk source=<host_dir> path=<container_mount_dir>
+
+A mapping for a single user can be set by:
+
+    echo -en "uid <host_uid> <cont_uid>\ngid <host_gid> <cont_gid>" | lxc config set $container raw.idmap -
+
+If you want to configure multiple user mappings. Create a file containing the maps:
+    
+    uid 1000 1000
+    gid 1000 1000 
+    ...
+
+Check the mapping for a container with:
+
+    cat <map_file> | lxc config set $container raw.idmap -
+    
+Changes to the uid/gip mapps are available after restarting your container!
