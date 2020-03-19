@@ -89,4 +89,4 @@ Check the mapping for a container with:
 
     cat <map_file> | lxc config set $container raw.idmap -
     
-Changes to the uid/gip mapps are available after restarting your container!
+Changes to the uid/gip maps are available after restarting your container!
