@@ -73,6 +73,11 @@ lxc config set $container nvidia.runtime true
 # Restrict student container to gpu id=4
 # lxc config device add $container gpu gpu
 lxc config device add $container gpu gpu id=4
+# Restrict memory
+lxc config set $container limits.memory 64GB
+# Restrict CPU
+lxc config set $container limits.cpu.allowance 20%
+
 lxc start $container
 
 echo "Restarting the container..."
