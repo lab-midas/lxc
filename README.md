@@ -75,18 +75,8 @@ To add mount points inside your student container, use the following lxc command
 
     lxc config device add <container_name> <disk_name> disk source=<host_dir> path=<container_mount_dir>
 
-A mapping for a single user can be set by:
+The mapping for a users and groups can be set by:
 
     echo -en "uid <host_uid> <cont_uid>\ngid <host_gid> <cont_gid>" | lxc config set $container raw.idmap -
-
-If you want to configure multiple user mappings. Create a file containing the maps:
-    
-    uid <host_uid> <cont_uid>
-    gid <host_gid> <cont_gid>
-    ...
-
-Check the mapping for a container with:
-
-    cat <map_file> | lxc config set $container raw.idmap -
     
 Changes to the uid/gip maps are available after restarting your container!
