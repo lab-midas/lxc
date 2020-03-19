@@ -66,6 +66,11 @@ For older CUDA versions: There are anaconda bundels to install tf/cuda in a cond
 
 Student containers
 ------------------
+To start a student container run
+
+    ./setupcontainer <container_name> <container_port>
+
+The name of the container should have the following format "contrastud01".
 To add mount points inside your student container, use the following lxc command on the host system:
 
     lxc config device add <container_name> homes_disk disk source=<host_dir> path=<container_mount_dir>
@@ -76,8 +81,8 @@ A mapping for a single user can be set by:
 
 If you want to configure multiple user mappings. Create a file containing the maps:
     
-    uid 1000 1000
-    gid 1000 1000 
+    uid <host_uid> <cont_uid>
+    gid <host_gid> <cont_gid>
     ...
 
 Check the mapping for a container with:
