@@ -2,10 +2,8 @@
 # variables
 # ($1): container name
 # ($2): ssh proxy host port
-# ($3): host user 
 container=$1
 sshproxyport=$2
-host_user=$3
 
 # Get GID/UID for the host user
 host_uid=$(id -u $host_user)
