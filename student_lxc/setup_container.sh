@@ -70,9 +70,9 @@ lxc exec $container -- sudo --login --user $cont_user bash -c "cd $cont_home/set
 # Gpu configuration
 lxc stop $container
 lxc config set $container nvidia.runtime true
-# Restrict student container to gpu id=4
+# Restrict student container to gpu id=3
 # lxc config device add $container gpu gpu
-lxc config device add $container gpu gpu id=4
+lxc config device add $container gpu gpu id=3
 # Restrict memory
 lxc config set $container limits.memory 64GB
 # Restrict CPU
