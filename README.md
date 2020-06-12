@@ -9,7 +9,7 @@ To install a lxc container, your user has to be in the lxc group!
 
     ./setupcontainer <container_name> <container_port> <host_user>
 
-Here you can find a list with the assigned user ports: /mnt/midas/midas/users.
+Allowed port ranges for each user are [UID x 10] : [UID x 10 + 99] (e.g. UID 3000, associated port range 30000-30099)
 
 You can access the container's SSH server via
 
@@ -42,11 +42,9 @@ CUDA installation
 -----------------
 To get CUDA for tensorflow applications:
 
-Copy the prepared CUDA libraries (and symlinks!) from the host into your container:
+Mount the prepared CUDA libraries from the host into your container:
 
-    sudo mkdir -p /midas
-    sudo mkdir -p /midas/software
-    sudo rsync -a /mnt/share/software/ /midas/software
+    lxc config device add <container_name> software disk source=/mnt/midas/software path=/midas/software
     echo "module use /midas/software/modules" >> ~/.bashrc
     
 Use `module load` to set the CUDA/CUDNN/TensorRT environment variables. For example,
@@ -75,7 +73,7 @@ To add mount points inside your student container, use the following lxc command
 
     lxc config device add <container_name> <disk_name> disk source=<host_dir> path=<container_mount_dir>
 
-The mapping for a users and groups can be set by:
+The mapping for a users and groups can be set by (the used port range is just an example):
 
     echo -en "both 1000-1099 1000-1099" | lxc config set contstudent01 raw.idmap -
 
