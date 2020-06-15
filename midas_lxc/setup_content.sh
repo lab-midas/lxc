@@ -35,7 +35,7 @@ sudo apt install -y xfce4
 sudo apt install -y xfce4-terminal
 
 # Install Software
-sudo snap install --devmode gitkraken
+sudo snap install --classic gitkraken
 sudo snap install --classic pycharm-community
 
 chrome_deb=google-chrome-stable_current_amd64.deb
