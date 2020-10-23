@@ -76,7 +76,8 @@ lxc config device add $container gpu gpu id=3
 # Restrict memory
 lxc config set $container limits.memory 64GB
 # Restrict CPU
-lxc config set $container limits.cpu.allowance 20%
+#lxc config set $container limits.cpu.allowance 20%
+lxc config set $container limits.cpu 17-28
 
 lxc start $container
 
